@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react"
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 
 export const EmployeeList = () => {
     const [employees, changeEmployee] = useState([])
     const [specialites, setSpecial] = useState("")
+    const history = useHistory()
 
     useEffect(
         () => {
@@ -23,7 +25,7 @@ export const EmployeeList = () => {
     return (
         <>
             <div>
-                Specialties: {specialites}
+                <button onClick={() => history.push("/employee/create")}>Hire Employee</button>
             </div>
             {
                 employees.map(
