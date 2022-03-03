@@ -6,7 +6,7 @@ export const TicketForm = () => {
     // we need to track transient state while user is interacting with form 
     // initial state is an object 
     // as user interacts, these two state variables will be updated
-    const [ticket, update] = useState({
+    const [ticket, updateTicket] = useState({
         description: "",
         emergency: false
     });
@@ -20,6 +20,7 @@ export const TicketForm = () => {
         // this prevents screen from blinking blank when you submit a ticket
         event.preventDefault()
 
+        // create a new ticket object format
         const newTicket = {
             description: ticket.description,
             emergency: ticket.emergency,
@@ -28,6 +29,7 @@ export const TicketForm = () => {
             dateCompleted: ""
         }
         
+        // POST = create something new
         const fetchOption = {
             method: "POST",
             headers: {
@@ -43,6 +45,7 @@ export const TicketForm = () => {
         })
     }
 
+    // html format of the whole ticket form with event listeners inside
     return (
         <form className="ticketForm">
             <h2 className="ticketForm__title">New Service Ticket</h2>
@@ -54,6 +57,7 @@ export const TicketForm = () => {
                         type="text"
                         className="form-control"
                         placeholder="Brief description of problem"
+                        // this event listener listens to what is input and sends it to API
                         // evt = event is parameter
                         // can't directly modify state so you will use setter function from above (update)
                         // first, copy existing state
@@ -63,7 +67,7 @@ export const TicketForm = () => {
                             (evt) => {
                                 const copy = {...ticket}
                                 copy.description=evt.target.value
-                                update(copy)
+                                updateTicket(copy)
                             }
                         } />
                 </div>
@@ -77,7 +81,7 @@ export const TicketForm = () => {
                             (evt) => {
                                 const copy = {...ticket}
                                 copy.emergency=evt.target.checked
-                                update(copy)
+                                updateTicket(copy)
                             }
                         } />
                 </div>

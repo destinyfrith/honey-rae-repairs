@@ -1,9 +1,9 @@
 import React, { useState } from "react"
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import { useHistory } from "react-router-dom"
 
 export const EmployeeForm = () => {
 
-    const [employee, change] = useState({
+    const [employee, changeEmployee] = useState({
         name: "",
         specialty: ""
     })
@@ -15,8 +15,7 @@ export const EmployeeForm = () => {
 
         const newEmployee = {
             name: employee.name,
-            specialty: employee.specialty,
-    
+            specialty: employee.specialty
         }
 
         const fetchOption = {
@@ -24,7 +23,7 @@ export const EmployeeForm = () => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify()
+            body: JSON.stringify(newEmployee)
         }
 
         return fetch("http://localhost:8088/employees", fetchOption)
@@ -44,7 +43,7 @@ export const EmployeeForm = () => {
                             (evt) => {
                                 const copy = { ...employee }
                                 copy.name = evt.target.value
-                                change(copy)
+                                changeEmployee(copy)
                             }
                         }
                         required autoFocus
@@ -58,6 +57,13 @@ export const EmployeeForm = () => {
                 <div className="form-group">
                     <label htmlFor="specialty">Specialty:</label>
                     <input
+                        onChange={
+                            (evt) => {
+                                const copy = { ...employee }
+                                copy.specialty = evt.target.value
+                                changeEmployee(copy)
+                            }
+                        }
                         required autoFocus
                         type="text"
                         className="form-control"
