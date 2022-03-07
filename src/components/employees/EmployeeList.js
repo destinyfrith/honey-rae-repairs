@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import { Link } from "react-router-dom"
 
 export const EmployeeList = () => {
     const [employees, changeEmployee] = useState([])
-    // const [specialites, setSpecial] = useState("")
+    const [specialites, setSpecial] = useState("")
     const history = useHistory()
 
     // useState is a built in hook 
@@ -19,13 +20,13 @@ export const EmployeeList = () => {
         []
     )
 
-    // useEffect(() => {
-    //     const JustSpecialties = employees.map(emp => emp.specialty)
-    //     setSpecial(JustSpecialties.join(","))
-    // }, [employees])
+    useEffect(() => {
+        const JustSpecialties = employees.map(emp => emp.specialty)
+        setSpecial(JustSpecialties.join(","))
+    }, [employees])
 
-    // below is the html layout display for employees list
-    // includes button that reroutes to employee/create 
+    //below is the html layout display for employees list
+    //includes button that reroutes to employee/create 
     return (
         <>
             <div>
@@ -34,7 +35,7 @@ export const EmployeeList = () => {
             {
                 employees.map(
                     (employee) => {
-                        return <p key={`employee--${employee.id}`}>{employee.name}</p>
+                        return <p key={`employee--${employee.id}`}> <Link to={`/employees/${employee.id}`}>{employee.name}</Link></p>
                     }
                 )
             }
