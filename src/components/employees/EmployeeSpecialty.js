@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
-export const Employee = () => {
-    const [employee, assignEmployee] = useState({})  // State variable for current employee object
+export const EmployeeSpecialty = () => {
+    const [employee, assignSpecialty] = useState({})  // State variable for current employee object
     const { employeeId } = useParams()  // Variable storing the route parameter (/d+)
 
     // fetch selected employee and set state when request comes back from API
@@ -11,10 +11,10 @@ export const Employee = () => {
             fetch(`http://localhost:8088/employees/${employeeId}`)
                 .then(res => res.json())
                 .then((data) => {
-                    assignEmployee(data)
+                    assignSpecialty(data)
                 })
         },
-        [ employeeId ]  // Above function runs when the value of ticketId change
+        [ employeeId ]  // Above function runs when the value of employeeId change
     )
 
     return (

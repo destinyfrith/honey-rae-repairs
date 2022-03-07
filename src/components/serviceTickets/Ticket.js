@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 
 export const Ticket = () => {
     const [ticket, assignTicket] = useState({})  // State variable for current ticket object

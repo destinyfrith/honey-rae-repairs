@@ -6,7 +6,8 @@ import { EmployeeList } from "./employees/EmployeeList"
 import { TicketForm } from "./serviceTickets/TicketForm"
 import { EmployeeForm } from "./employees/EmployeeForm"
 import { Ticket } from "./serviceTickets/Ticket"
-import { Employee } from "./employees/Employee"
+import { EmployeeSpecialty } from "./employees/EmployeeSpecialty"
+
 
 // this is controlling what you see when you click each indiviudal link on the nav bar
 export const ApplicationViews = () => {
@@ -15,23 +16,29 @@ export const ApplicationViews = () => {
             <Route exact path="/customers">
                 <CustomerList />
             </Route>
-            <Route path="/employees">
+
+            <Route exact path="/employees">
                 <EmployeeList />
             </Route>
+
+            <Route exact path="/employees/:employeeId(\d+)">
+                <EmployeeSpecialty />
+            </Route>
+
             <Route path="/employee/create">
                 <EmployeeForm />
             </Route>
-            <Route path="/ticket/create">
-                <TicketForm />
-            </Route>
+
             <Route exact path="/tickets">
                 <TicketList />
             </Route>
+
             <Route exact path="/tickets/:ticketId(\d+)">
                 <Ticket />
             </Route>
-            <Route exact path="/employees/:employeeId(\d+)">
-                <Employee />
+
+            <Route path="/ticket/create">
+                <TicketForm />
             </Route>
         </>
     )

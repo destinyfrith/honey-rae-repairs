@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 export const EmployeeList = () => {
     const [employees, changeEmployee] = useState([])
-    const [specialites, setSpecial] = useState("")
+    const [JustSpecialties, setSpecialty] = useState("")
     const history = useHistory()
 
     // useState is a built in hook 
@@ -21,8 +21,8 @@ export const EmployeeList = () => {
     )
 
     useEffect(() => {
-        const JustSpecialties = employees.map(emp => emp.specialty)
-        setSpecial(JustSpecialties.join(","))
+        const JustSpecialties = employees.map(employee => employee.specialty)
+        setSpecialty(JustSpecialties.join(", "))
     }, [employees])
 
     //below is the html layout display for employees list
@@ -31,6 +31,10 @@ export const EmployeeList = () => {
         <>
             <div>
                 <button onClick={() => history.push("/employee/create")}>Hire Employee</button>
+            </div>
+            <br></br>
+            <div>
+                Specialties: {JustSpecialties}
             </div>
             {
                 employees.map(
